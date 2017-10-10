@@ -1,6 +1,6 @@
 #enconding utf-8
 
-#navegar ate a pasta que criei a classe
+#navegar ate a pasta que criei a classe forca
 require_relative '../../../src/forca' 
 
 Quando(/^começo um novo Jogo$/) do
