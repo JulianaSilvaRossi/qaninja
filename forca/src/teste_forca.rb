@@ -4,3 +4,4 @@ require_relative 'forca'
 game = Forca.new
 
 puts game.start
+
