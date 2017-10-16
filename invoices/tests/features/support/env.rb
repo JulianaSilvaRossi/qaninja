@@ -5,6 +5,7 @@ require 'selenium-webdriver'
 
 Capybara.configure do |config|
     config.default_driver = :selenium
+    config.app_host = 'https://ninjainvoices.herokuapp.com'
 end
 
-Capybara.default_max_wait_time = 5
+Capybara.default_max_wait_time = 10
