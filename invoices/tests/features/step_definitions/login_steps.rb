@@ -1,28 +1,29 @@
 #encoding: utf-8
 Dado("Usuário acessa página login") do
-  visit '/login'
+  @login = LoginPage.new
+  @dash = DashPage.new
+  @nav = NavPage.new
+  @login.load
 end
 
 Dado("que tenho os seguintes dados de acesso:") do |table|                    
     @user = table.rows_hash
     # @email = table.rows_hash['email']
     # @password = table.rows_hash['senha']
-    
   end                                                                           
                                                                                 
   Quando("faço login") do                                                       
-    find('#email').set @user['email']
-    find('input[type=password]').set @user['senha']
-    find('button[class*=login-button]').click
+    @login.do_login(@user)
   end                                                                           
                                                                                 
   Então("vejo o Dashboard com a mensagem {string}") do |welcome|                 
-    title = find('#content h3').text
-    expect(title).to eql "Dashboard"
-
-    title_row = find('#title_row').text
-    expect(title_row).to have_content welcome
-  end                                                                           
+    expect(@dash.title.text).to eql "Dashboard"
+    expect(@dash.title_row.text).to have_content welcome
+  end   
+  
+  Então("vejo o email do usuário logado") do
+    expect(@nav.usermenu.text).to eql @user['email']
+  end
 
   # Exemplo Cenário Expressivo na mão - usando laço for each e array
   Dado("que eu tenho os seguintes dados:") do |table|
@@ -36,22 +37,16 @@ Dado("que tenho os seguintes dados de acesso:") do |table|
     @message_spec = Array.new
     
     @users.each do |user|
-      find('#email').set user['email']
-      find('input[type=password]').set user['senha']
-      find('button[class*=login-button]').click
-
-      @message_list.push(find('#login-errors').text)
+      @login.do_login(user)
+      @message_list.push(@login.message_error.text)
       @message_spec.push(user['mensagem'])
-
     end
   end
   
   Então("vejo a mensagem de erro de login") do
     puts @message_list
     puts @message_spec
-
     expect(@message_list).to eql @message_spec
-    
   end
 
   # Exemplo Cenário Expressivo:

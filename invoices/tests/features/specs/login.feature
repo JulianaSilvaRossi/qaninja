@@ -8,6 +8,7 @@ Para poder cadastrar clientes e faturas
     Contexto: Página login
     * Usuário acessa página login
 
+    @logout
     Cenário: Administrador faz login
 
         Dado que tenho os seguintes dados de acesso:
@@ -15,6 +16,7 @@ Para poder cadastrar clientes e faturas
         |senha|secret|
         Quando faço login
         Então vejo o Dashboard com a mensagem "Olá, Invoices, seja bem vindo ao Invoices."
+            E vejo o email do usuário logado
 
     #Cenário Expressivo na Mão - Para corrigir problema de refresh
 
