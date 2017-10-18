@@ -30,3 +30,16 @@ class NavPage <SitePrism::Page
         self.logout.click
     end
 end
+
+class CustomerPage <SitePrism::Page
+    set_url '/customers'
+    element :name, 'input[name=name]'
+    element :phone, 'input[name=phone]'
+    element :email, 'input[name=email]'
+    element :gender_m, 'input[name=radio-m]'
+    element :gender_f, 'input[name=radio-f]'
+    element :type, '#type-customer'
+    element :note, 'textarea[name=note]'
+    element :info, '.checkbox input'
+
+end
