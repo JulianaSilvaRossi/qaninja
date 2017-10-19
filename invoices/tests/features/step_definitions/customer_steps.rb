@@ -1,19 +1,27 @@
 #encoding: utf-8
 
+Dado("Usuário acessa cadastro de clientes") do
+  @customer.load
+end
+
   Dado("que tenho um novo cliente com os seguintes atributos:") do |table|
-    @customer.load
+    
     @new_customer = table.rows_hash    
   end
   
   Quando("faço o cadastro desse cliente") do
+    @customer.new.click
     @customer.name.set @new_customer['name']
     @customer.phone.set @new_customer['phone']
     @customer.email.set @new_customer['email']
     @customer.note.set @new_customer['note']
-    sleep(2)
+    @customer.save.click
+    
   end
   
   Então("este cliente deve ser exibido na busca") do
-    pending # Write code here that turns the phrase above into concrete actions
+    @customer.search_input.set @new_customer['email']
+    @customer.search_button.click
+    sleep(5)
   end
   
