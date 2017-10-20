@@ -35,6 +35,8 @@ class CustomerPage <SitePrism::Page
     set_url '/customers'
 
     element :new, '#dataview-insert-button'
+    element :save, '#form-submit-button'
+
     element :name, 'input[name=name]'
     element :phone, 'input[name=phone]'
     element :email, 'input[name=email]'
@@ -43,8 +45,10 @@ class CustomerPage <SitePrism::Page
     element :type, '#type-customer'
     element :note, 'textarea[name=note]'
     element :info, '.checkbox input'
-    element :save, '#form-submit-button'
+    
     element :search_input, 'input[name=search]'
     element :search_button, '#dataview-search-button'
+
+    elements :view, 'table tbody tr'
 
 end

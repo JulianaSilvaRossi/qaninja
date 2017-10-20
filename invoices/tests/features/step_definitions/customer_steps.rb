@@ -4,9 +4,21 @@ Dado("Usuário acessa cadastro de clientes") do
   @customer.load
 end
 
-  Dado("que tenho um novo cliente com os seguintes atributos:") do |table|
-    
-    @new_customer = table.rows_hash    
+  # Dado("que tenho um novo cliente com os seguintes atributos:") do |table|
+  #   @new_customer = table.rows_hash    
+  # end
+
+  Dado("que eu tenho um cliente {string}") do |type|
+    name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
+    @new_customer = {
+      'name' => name,
+      'phone' => Faker::PhoneNumber.cell_phone,
+      'email' => Faker::Internet.free_email(name),
+      'note' => Faker::Lorem.paragraph,
+      'type' => type,
+      'info' =>true
+
+    }
   end
   
   Quando("faço o cadastro desse cliente") do
@@ -15,13 +27,17 @@ end
     @customer.phone.set @new_customer['phone']
     @customer.email.set @new_customer['email']
     @customer.note.set @new_customer['note']
+    @customer.info.click if @new_customer['info'] == 'true'
     @customer.save.click
-    
   end
   
   Então("este cliente deve ser exibido na busca") do
     @customer.search_input.set @new_customer['email']
     @customer.search_button.click
-    sleep(5)
+    expect(@customer.view.size).to eql 1
+    expect(@customer.view.first.text).to have_content @new_customer['name']
+    expect(@customer.view.first.text).to have_content @new_customer['phone']
+    expect(@customer.view.first.text).to have_content @new_customer['email']
+    sleep(3)
   end
   
