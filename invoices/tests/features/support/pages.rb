@@ -51,4 +51,13 @@ class CustomerPage <SitePrism::Page
 
     elements :view, 'table tbody tr'
 
+    def select_gender (gender)
+        self.gender_m if gender == 'M'
+        self.gender_f if gender == 'F'
+    end
+
+    def select_type(target)
+        self.type.find('option', text: target).select_option
+    end
+
 end
