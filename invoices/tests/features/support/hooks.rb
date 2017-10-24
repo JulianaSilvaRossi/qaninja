@@ -7,11 +7,11 @@ Before do
 end
 
 Before ('@login_adm') do
+    @login.load
     user = {
         'email' => 'admin-qa@invoices.com',
         'senha' => 'secret'
       }
-      @login.load
       @login.do_login(user)
       @dash.wait_for_title
 end

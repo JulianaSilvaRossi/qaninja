@@ -34,6 +34,8 @@ end
 class CustomerPage <SitePrism::Page
     set_url '/customers'
 
+    section :modal_box, Sections::ModalBox, '.modal-dialog'
+
     element :new, '#dataview-insert-button'
     element :save, '#form-submit-button'
 
@@ -50,14 +52,21 @@ class CustomerPage <SitePrism::Page
     element :search_button, '#dataview-search-button'
 
     elements :view, 'table tbody tr'
+    
+    #element :modal_remove_button, '.modal-dialog button[data-bb-handler=success]'
+    element :alert_warning, '.alert-warning'
 
     def select_gender (gender)
-        self.gender_m if gender == 'M'
-        self.gender_f if gender == 'F'
+        self.gender_m.click if gender == 'M'
+        self.gender_f.click if gender == 'F'
     end
 
     def select_type(target)
         self.type.find('option', text: target).select_option
+    end
+
+    def remove_item
+        self.view.first.find('span[class*=trash]').click
     end
 
 end

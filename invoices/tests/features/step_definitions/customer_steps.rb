@@ -1,5 +1,15 @@
 #encoding: utf-8
 
+Dado("Usuário faz login") do
+  @login.load
+  user = {
+      'email' => 'admin-qa@invoices.com',
+      'senha' => 'secret'
+    }
+    @login.do_login(user)
+    @dash.wait_for_title
+end
+
 Dado("Usuário acessa cadastro de clientes") do
   @customer.load
 end
@@ -8,7 +18,7 @@ end
   #   @new_customer = table.rows_hash    
   # end
 
-  Dado("que eu tenho um cliente {string}") do |type|
+  Dado("que eu tenho um novo cliente") do
     name = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
     @new_customer = {
       'name' => name,
@@ -21,6 +31,10 @@ end
     }
     
   end
+
+  Dado("esse cliente é do {string}") do |tipo|
+    @new_customer['type'] = tipo
+  end
   
   Quando("faço o cadastro desse cliente") do
     @customer.new.click
@@ -31,6 +45,7 @@ end
     @customer.select_type (@new_customer['type'])
     @customer.note.set @new_customer['note']
     @customer.info.click if @new_customer['info'].eql?(true)
+    sleep(3)
     @customer.save.click
   end
   
@@ -41,5 +56,29 @@ end
     expect(@customer.view.first.text).to have_content @new_customer['name']
     expect(@customer.view.first.text).to have_content @new_customer['phone']
     expect(@customer.view.first.text).to have_content @new_customer['email']
+    
   end
   
+  Dado("que tenho um cliente cadastrado") do
+    steps %{
+      Dado que eu tenho um novo cliente 
+      Quando faço o cadastro desse cliente
+      Então este cliente deve ser exibido na busca
+    }
+  end
+  
+  Quando("solicito a exclusão desse cliente") do
+    @customer.remove_item
+  end
+  
+  Quando("confirmo a exclusão") do
+    @customer.modal_box.remove_yes.click
+  end
+  
+  Então("esse cliente não deve ser exibido na busca") do
+    pending # Write code here that turns the phrase above into concrete actions
+  end
+  
+  Então("vejo uma mensagem informando que este cliente não está cadastrado") do
+    pending # Write code here that turns the phrase above into concrete actions
+  end
