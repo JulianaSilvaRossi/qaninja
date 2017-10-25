@@ -8,7 +8,7 @@ Funcionalidade: Cadastrar clientes
     Contexto: Acessa cadastro de clientes
     * Usuário acessa cadastro de clientes
 
-    @cadastro @login_adm
+    @cadastro @login_adm @smoke
     Cenário: Cadastrar novo cliente
 
         Dado que eu tenho um novo cliente 

@@ -1,10 +1,10 @@
 
-Before do
-    @login = LoginPage.new
-    @dash = DashPage.new
-    @nav = NavPage.new
-    @customer = CustomerPage.new
-end
+# Before do
+#     @login = LoginPage.new
+#     @dash = DashPage.new
+#     @nav = NavPage.new
+#     @customer = CustomerPage.new
+# end
 
 Before ('@login_adm') do
     @login.load
@@ -12,11 +12,11 @@ Before ('@login_adm') do
         'email' => 'admin-qa@invoices.com',
         'senha' => 'secret'
       }
-      @login.do_login(user)
-      @dash.wait_for_title
+      login.do_login(user)
+      dash.wait_for_title
 end
 
 After ('@logout') do
-    @nav = NavPage.new
-    @nav.do_logout
+    # @nav = NavPage.new
+    dash.nav.do_logout
 end

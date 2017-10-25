@@ -11,16 +11,16 @@ Dado("que tenho os seguintes dados de acesso:") do |table|
   end                                                                           
                                                                                 
   Quando("faço login") do                                                       
-    @login.do_login(@user)
+    login.do_login(@user)
   end                                                                           
                                                                                 
   Então("vejo o Dashboard com a mensagem {string}") do |welcome|                 
-    expect(@dash.title.text).to eql "Dashboard"
-    expect(@dash.title_row.text).to have_content welcome
+    expect(dash.title.text).to eql "Dashboard"
+    expect(dash.title_row.text).to have_content welcome
   end   
   
   Então("vejo o email do usuário logado") do
-    expect(@nav.usermenu.text).to eql @user['email']
+    expect(dash.nav.usermenu.text).to eql @user['email']
   end
 
   # Exemplo Cenário Expressivo na mão - usando laço for each e array
@@ -35,8 +35,8 @@ Dado("que tenho os seguintes dados de acesso:") do |table|
     @message_spec = Array.new
     
     @users.each do |user|
-      @login.do_login(user)
-      @message_list.push(@login.message_error.text)
+      login.do_login(user)
+      @message_list.push(login.message_error.text)
       @message_spec.push(user['mensagem'])
     end
   end

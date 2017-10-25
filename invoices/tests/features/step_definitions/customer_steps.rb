@@ -6,8 +6,8 @@ Dado("Usuário faz login") do
       'email' => 'admin-qa@invoices.com',
       'senha' => 'secret'
     }
-    @login.do_login(user)
-    @dash.wait_for_title
+    login.do_login(user)
+    dash.wait_for_title
 end
 
 Dado("Usuário acessa cadastro de clientes") do
@@ -37,25 +37,24 @@ end
   end
   
   Quando("faço o cadastro desse cliente") do
-    @customer.new.click
-    @customer.name.set @new_customer['name']
-    @customer.phone.set @new_customer['phone']
-    @customer.email.set @new_customer['email']
-    @customer.select_gender (@new_customer['gender'])
-    @customer.select_type (@new_customer['type'])
-    @customer.note.set @new_customer['note']
-    @customer.info.click if @new_customer['info'].eql?(true)
-    sleep(3)
-    @customer.save.click
+    customer.new.click
+    customer.name.set @new_customer['name']
+    customer.phone.set @new_customer['phone']
+    customer.email.set @new_customer['email']
+    customer.select_gender (@new_customer['gender'])
+    customer.select_type (@new_customer['type'])
+    customer.note.set @new_customer['note']
+    customer.info.click if @new_customer['info'].eql?(true)
+    customer.save.click
   end
   
   Então("este cliente deve ser exibido na busca") do
-    @customer.search_input.set @new_customer['email']
-    @customer.search_button.click
-    expect(@customer.view.size).to eql 1
-    expect(@customer.view.first.text).to have_content @new_customer['name']
-    expect(@customer.view.first.text).to have_content @new_customer['phone']
-    expect(@customer.view.first.text).to have_content @new_customer['email']
+    customer.search_input.set @new_customer['email']
+    customer.search_button.click
+    expect(customer.view.size).to eql 1
+    expect(customer.view.first.text).to have_content @new_customer['name']
+    expect(customer.view.first.text).to have_content @new_customer['phone']
+    expect(customer.view.first.text).to have_content @new_customer['email']
     
   end
   
@@ -68,17 +67,19 @@ end
   end
   
   Quando("solicito a exclusão desse cliente") do
-    @customer.remove_item
+    customer.remove_item
   end
   
   Quando("confirmo a exclusão") do
-    @customer.modal_box.remove_yes.click
+    customer.modal_box.remove_yes.click
   end
   
   Então("esse cliente não deve ser exibido na busca") do
-    pending # Write code here that turns the phrase above into concrete actions
+    expect(customer.has_view?).to eql false
   end
   
   Então("vejo uma mensagem informando que este cliente não está cadastrado") do
-    pending # Write code here that turns the phrase above into concrete actions
+    expect(
+      customer.alert_warning.text
+      ).to eql "\"#{@new_customer['email']}\" não encontrado."
   end

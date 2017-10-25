@@ -9,7 +9,7 @@ Funcionalidade: Exclusão de clientes
     * Usuário faz login
     * Usuário acessa cadastro de clientes
 
-    @smoke
+    @remover 
     Cenário: Remover clientes
 
         Dado que tenho um cliente cadastrado

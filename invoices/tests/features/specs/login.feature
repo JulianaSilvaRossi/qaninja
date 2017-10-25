@@ -8,7 +8,7 @@ Para poder cadastrar clientes e faturas
     Contexto: Página login
     * Usuário acessa página login
 
-    @logout
+    @logout @smoke
     Cenário: Administrador faz login
 
         Dado que tenho os seguintes dados de acesso:
