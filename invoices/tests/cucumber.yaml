@@ -1,0 +1,6 @@
+#yaml template
+
+---
+default: --format progress -p html
+html: --format html --out=report.html
+json: --format html --out=report.json

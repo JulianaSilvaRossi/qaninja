@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 Dado("Usuário acessa página login") do
-    @login.load
+    login.load
 end
 
 Dado("que tenho os seguintes dados de acesso:") do |table|                    

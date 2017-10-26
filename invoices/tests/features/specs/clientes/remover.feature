@@ -9,7 +9,7 @@ Funcionalidade: Exclusão de clientes
     * Usuário faz login
     * Usuário acessa cadastro de clientes
 
-    @remover 
+    @remover @logout
     Cenário: Remover clientes
 
         Dado que tenho um cliente cadastrado

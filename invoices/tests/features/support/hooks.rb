@@ -7,7 +7,7 @@
 # end
 
 Before ('@login_adm') do
-    @login.load
+    login.load
     user = {
         'email' => 'admin-qa@invoices.com',
         'senha' => 'secret'
@@ -17,6 +17,17 @@ Before ('@login_adm') do
 end
 
 After ('@logout') do
-    # @nav = NavPage.new
     dash.nav.do_logout
+end
+
+After do |scenario|
+    @file_name = scenario.name.downcase!.gsub(' ','_')
+    @file_name= @file_name.gsub(',','').gsub('#','')
+    @file_name= @file_name.gsub('(','').gsub(')','')
+
+    @target = "reports/screenshots/#{@file_name}.png"
+
+    page.save_screenshot(@target)
+    embed(@target, 'image.png','Clique aqui para Evidências')
+
 end

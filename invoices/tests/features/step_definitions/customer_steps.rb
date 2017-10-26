@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 Dado("Usuário faz login") do
-  @login.load
+  login.load
   user = {
       'email' => 'admin-qa@invoices.com',
       'senha' => 'secret'
@@ -11,7 +11,7 @@ Dado("Usuário faz login") do
 end
 
 Dado("Usuário acessa cadastro de clientes") do
-  @customer.load
+  customer.load
 end
 
   # Dado("que tenho um novo cliente com os seguintes atributos:") do |table|
