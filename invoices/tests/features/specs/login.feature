@@ -11,11 +11,13 @@ Para poder cadastrar clientes e faturas
     @logout @smoke
     Cenário: Administrador faz login
 
-        Dado que tenho os seguintes dados de acesso:
-        |email|admin-qa@invoices.com|
-        |senha|secret|
+        # Dado que tenho os seguintes dados de acesso:
+        # |email|admin-qa@invoices.com|
+        # |senha|secret|
+        Dado que eu tenho um usuário com perfil "Admin"
         Quando faço login
-        Então vejo o Dashboard com a mensagem "Olá, Invoices, seja bem vindo ao Invoices."
+        #Então vejo o Dashboard com a mensagem "Olá, Invoices, seja bem vindo ao Invoices."
+        Então vejo o Dashboard com a mensagem "Olá, "Invoices", seja bem vindo ao Invoices."
             E vejo o email do usuário logado
 
     #Cenário Expressivo na Mão - Para corrigir problema de refresh
@@ -28,6 +30,7 @@ Para poder cadastrar clientes e faturas
             | admin-qa@invoices.com | 123456 | Senha inválida.          |
             | admin-qa&invoices.com | 123456 | Informe um email válido. |
             | admin-qa@gmail.com    | 123456 | Usuário não cadastrado.  |
+        
         Quando faço a tentativa de login
         Então vejo a mensagem de erro de login
 

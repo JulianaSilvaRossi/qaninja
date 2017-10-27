@@ -4,20 +4,31 @@ Dado("Usuário acessa página login") do
     login.load
 end
 
-Dado("que tenho os seguintes dados de acesso:") do |table|                    
-    @user = table.rows_hash
-    # @email = table.rows_hash['email']
-    # @password = table.rows_hash['senha']
-  end                                                                           
+# Dado("que tenho os seguintes dados de acesso:") do |table|                    
+#     @user = table.rows_hash
+#     # @email = table.rows_hash['email']
+#     # @password = table.rows_hash['senha']
+#   end    
+  
+  Dado("que eu tenho um usuário com perfil {string}") do |perfil|
+    @user = $data['users'][perfil]
+  end
                                                                                 
   Quando("faço login") do                                                       
     login.do_login(@user)
-  end                                                                           
-                                                                                
-  Então("vejo o Dashboard com a mensagem {string}") do |welcome|                 
+  end
+  
+  Então("vejo o Dashboard com a mensagem {string}Invoices{string}") do |msg1, msg2|
     expect(dash.title.text).to eql "Dashboard"
-    expect(dash.title_row.text).to have_content welcome
-  end   
+    expect(dash.title_row.text).to have_content "#{msg1} #{@user['name']}#{msg2}"
+  end
+                                                                                
+  # Então("vejo o Dashboard com a mensagem {string}") do |welcome|                 
+  #   expect(dash.title.text).to eql "Dashboard"
+  #   expect(dash.title_row.text).to have_content welcome
+  # end   
+
+  
   
   Então("vejo o email do usuário logado") do
     expect(dash.nav.usermenu.text).to eql @user['email']

@@ -6,7 +6,7 @@ Funcionalidade: Exclusão de clientes
     Para poder remover meus clientes
 
     Contexto: Cadastrar cliente
-    * Usuário faz login
+    * Usuário "admin" faz login
     * Usuário acessa cadastro de clientes
 
     @remover @logout

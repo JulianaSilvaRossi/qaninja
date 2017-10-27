@@ -47,6 +47,10 @@ Capybara.register_driver :selenium do |app|
     end
 end
 
+$env = ENV['ENVIROMENT']
+
+$data = YAML.load_file(File.dirname(__FILE__) + "/data/#{$env}.yaml")
+
 Capybara.configure do |config|
     config.default_driver = :selenium
     config.app_host = 'https://ninjainvoices.herokuapp.com'

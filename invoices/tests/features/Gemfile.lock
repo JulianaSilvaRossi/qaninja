@@ -75,8 +75,8 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  capybara
-  cucumber
+  capybara (~> 2.15)
+  cucumber (~> 2.4)
   faker
   poltergeist (~> 1.16)
   rspec

@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'cucumber'
-#gem 'cucumber', '~> 2.4'
-gem 'capybara'
-#gem 'capybara', '~> 2.15'
+#gem 'cucumber'
+gem 'cucumber', '~> 2.4'
+#gem 'capybara'
+gem 'capybara', '~> 2.15'
 gem 'rspec'
 gem 'selenium-webdriver'
 gem 'site_prism'

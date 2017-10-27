@@ -1,14 +1,22 @@
 #encoding: utf-8
 
-Dado("Usuário faz login") do
+Dado("Usuário {string} faz login") do |perfil|
   login.load
-  user = {
-      'email' => 'admin-qa@invoices.com',
-      'senha' => 'secret'
-    }
+  user=$data['users'][perfil]
     login.do_login(user)
     dash.wait_for_title
 end
+
+# Dado("Usuário faz login") do |perfil|
+#   login.load
+#   # user = {
+#   #     'email' => 'admin-qa@invoices.com',
+#   #     'senha' => 'secret'
+#   #   }
+#   user=$data['users'][perfil]
+#     login.do_login(user)
+#     dash.wait_for_title
+# end
 
 Dado("Usuário acessa cadastro de clientes") do
   customer.load

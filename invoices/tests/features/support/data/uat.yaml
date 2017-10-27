@@ -1,0 +1,12 @@
+## dados do ambiente uat
+---
+url: https://ninjainvoices-uat.herokuapp.com
+users:
+  admin:
+    name: "Admin uat"
+    email: "admin-uat@invoices.com"
+    password: "secret"
+  analyst:
+    name: "Analyst uat"
+    email: "analyst-uat@invoices.com"
+    password: "teste#123"

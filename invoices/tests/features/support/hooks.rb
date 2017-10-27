@@ -7,6 +7,12 @@
 # end
 
 Before ('@login_adm') do
+
+    # login.load
+    # user=$data['users'][perfil]
+    #   login.do_login(user)
+    #   dash.wait_for_title
+
     login.load
     user = {
         'email' => 'admin-qa@invoices.com',

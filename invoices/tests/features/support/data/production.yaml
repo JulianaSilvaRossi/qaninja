@@ -1,0 +1,12 @@
+## dados do ambiente production
+---
+url: https://ninjainvoices.herokuapp.com
+users:
+  admin:
+    name: "Admin Production"
+    email: "admin-prod@invoices.com"
+    password: "secret"
+  analyst:
+    name: "Analyst Production"
+    email: "analyst-prodqa@invoices.com"
+    password: "teste#123"

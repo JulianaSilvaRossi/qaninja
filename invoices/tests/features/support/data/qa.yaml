@@ -1,0 +1,12 @@
+## dados do ambiente qa
+---
+url: https://ninjainvoices.herokuapp.com
+users:
+  admin:
+    name: "Admin QA"
+    email: "admin-qa@invoices.com"
+    senha: "secret"
+  analyst:
+    name: "Analyst QA"
+    email: "analyst-qa@invoices.com"
+    senha: "teste#123"
