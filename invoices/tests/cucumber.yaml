@@ -1,7 +1,7 @@
 #yaml template
 
 ---
-default: --format progress -p json -p chrome -p qa
+default: --format progress -p html -p firefox -p qa
 html: --format html --out=report.html
 json: --format html --out=report.json
 firefox: BROWSER=firefox

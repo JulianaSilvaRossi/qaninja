@@ -3,7 +3,7 @@
 url: https://ninjainvoices.herokuapp.com
 users:
   admin:
-    name: "Admin QA"
+    name: "Invoices"
     email: "admin-qa@invoices.com"
     senha: "secret"
   analyst:

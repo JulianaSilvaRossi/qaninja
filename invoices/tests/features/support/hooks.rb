@@ -18,6 +18,8 @@ Before ('@login_adm') do
         'email' => 'admin-qa@invoices.com',
         'senha' => 'secret'
       }
+
+    #   @user = $data['users'][perfil]
       login.do_login(user)
       dash.wait_for_title
 end

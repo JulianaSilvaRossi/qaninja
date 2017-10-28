@@ -18,11 +18,12 @@ end
     login.do_login(@user)
   end
   
-  Então("vejo o Dashboard com a mensagem {string}Invoices{string}") do |msg1, msg2|
+  Então("vejo o Dashboard com a mensagem {string} usuário{string}") do |msg1, msg2|
     expect(dash.title.text).to eql "Dashboard"
     expect(dash.title_row.text).to have_content "#{msg1} #{@user['name']}#{msg2}"
   end
-                                                                                
+  "Olá, Admin QA, seja bem vindo ao Invoices."
+
   # Então("vejo o Dashboard com a mensagem {string}") do |welcome|                 
   #   expect(dash.title.text).to eql "Dashboard"
   #   expect(dash.title_row.text).to have_content welcome

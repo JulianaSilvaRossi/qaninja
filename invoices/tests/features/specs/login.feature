@@ -14,10 +14,10 @@ Para poder cadastrar clientes e faturas
         # Dado que tenho os seguintes dados de acesso:
         # |email|admin-qa@invoices.com|
         # |senha|secret|
-        Dado que eu tenho um usuário com perfil "Admin"
+        Dado que eu tenho um usuário com perfil "admin"
         Quando faço login
         #Então vejo o Dashboard com a mensagem "Olá, Invoices, seja bem vindo ao Invoices."
-        Então vejo o Dashboard com a mensagem "Olá, "Invoices", seja bem vindo ao Invoices."
+        Então vejo o Dashboard com a mensagem "Olá, " usuário", seja bem vindo ao Invoices."
             E vejo o email do usuário logado
 
     #Cenário Expressivo na Mão - Para corrigir problema de refresh
